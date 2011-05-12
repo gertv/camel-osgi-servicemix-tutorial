@@ -1,0 +1,57 @@
+INTRODUCTION
+============
+This example shows different architectures that we can design on ServiceMix 4 platform :
+- Messaging using Apache Camel framework
+- OSGI Registry with Java Application (Service and DAO layers) to persist information into a DB
+- Web using Apache Wicket framework and Spring Dynamic Module to retrieve service fron OSGI registry
+
+More info about this project can be find here http://camel.apache.org/tutorial-osgi-camel-part2.html
+
+Remark : This example does not longer use Hibernate but OpenJPA
+
+COMPILING
+=========
+mvn clean install
+
+DEPLOYING
+=========
+1) Download Fuse ESB Server from this repository : http://repo.fusesource.com/nexus/content/repositories/releases/org/apache/servicemix/apache-servicemix/4.3.1-fuse-01-09/
+2) Unzip the zip or tar.gz archive
+3) Open in a DOS windows or Unix terminal the directory bin
+4) Start ServiceMix servicemix.bat or ./servicemix
+5) In the servicemix console, launch the commands to install features of reportincident demo
+
+features:addUrl mvn:org.apache.camel.example.reportincident/features/1.0-SNAPSHOT/xml/features
+features:install reportincident-jpa
+
+3) Check if the project works fine and connect to the following url in your browser
+http://localhost:8282/cxf/camel-example/incident?wsdl
+
+4) Verify of the web site is operational
+http://localhost:8181/reportincidentweb/
+
+5) Copy incident file
+cp /Users/charlesmoulliard/wks-projects/tutorial-osgi-camel-part2/reportincident.routing/src/data/csv-one-record.txt /Users/charlesmoulliard/Applications/apache-servicemix-4.3.1-fuse-01-09/data/reportincident/
+
+6) Use SOAPUi client and send this envelope to the server
+SOAP Enveloppe
+**************
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rep="http://reportincident.example.camel.apache.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <rep:inputReportIncident>
+         <incidentId>999</incidentId>
+         <incidentDate>10-05-2011</incidentDate>
+         <givenName>Charles</givenName>
+         <familyName>Moulliard</familyName>
+         <summary>Probleme au parisjug</summary>
+         <details>La salle est en feu !</details>
+         <email>cmoulliard@fusesource.com</email>
+         <phone>+32473604014</phone>
+      </rep:inputReportIncident>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+7) Enjoy this demo
+
+

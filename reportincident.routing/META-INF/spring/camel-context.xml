@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:osgi="http://www.springframework.org/schema/osgi"
+	xmlns:osgix="http://www.springframework.org/schema/osgi-compendium"
+	xmlns:camel="http://camel.apache.org/schema/spring"
+	xmlns:cxf="http://camel.apache.org/schema/cxf"
+	xsi:schemaLocation="
+	    http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/osgi
+		http://www.springframework.org/schema/osgi/spring-osgi.xsd
+		http://camel.apache.org/schema/osgi
+		http://camel.apache.org/schema/osgi/camel-osgi.xsd
+		http://camel.apache.org/schema/spring
+		http://camel.apache.org/schema/spring/camel-spring.xsd
+		http://camel.apache.org/schema/cxf
+		http://camel.apache.org/schema/cxf/camel-cxf.xsd
+		http://www.springframework.org/schema/osgi-compendium
+        http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd">
+		
+
+   <import resource="classpath:META-INF/cxf/cxf.xml" />
+   <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+   <import resource="classpath:META-INF/cxf/cxf-extension-http.xml" />
+   <import resource="classpath:META-INF/cxf/osgi/cxf-extension-osgi.xml" />  
+ 
+   <!--  -->
+   <context:property-placeholder properties-ref="camelProps" placeholderPrefix="#{" placeholderSuffix="}" />
+   
+   
+   <!-- 
+   <context:property-override properties-ref="camelProps"/>
+    -->
+
+	<bean id="bindyDataformat" class="org.apache.camel.dataformat.bindy.csv.BindyCsvDataFormat">
+		<constructor-arg type="java.lang.String" value="org.apache.camel.example.reportincident.model" />
+	</bean>
+
+	<bean id="incidentSaver" class="org.apache.camel.example.reportincident.internal.IncidentSaver">
+		<property name="incidentService">
+			<osgi:reference interface="org.apache.camel.example.reportincident.service.IncidentService"/>
+		</property>
+	</bean>
+	
+	<bean id="webservice" class="org.apache.camel.example.reportincident.internal.WebService" />
+	<bean id="feedback" class="org.apache.camel.example.reportincident.internal.Feedback" />
+	
+	<!-- webservice endpoint --> 
+	<cxf:cxfEndpoint id="reportIncident"
+		address="/camel-example/incident"
+		serviceClass="org.apache.camel.example.reportincident.ReportIncidentEndpoint"
+		xmlns:s="http://reportincident.example.camel.apache.org">
+	</cxf:cxfEndpoint>
+	
+	<osgi:reference id="queuingservice" interface="org.apache.camel.Component" />
+
+	<camel:camelContext trace="true" xmlns="http://camel.apache.org/schema/osgi">
+
+		<camel:route>
+			<camel:from	uri="#{uriFile}" />
+			<!-- file://d:/temp/data/?move=d:/temp/done/${file.name}  -->
+			<camel:setHeader headerName="origin">
+				<camel:constant>file</camel:constant>
+			</camel:setHeader>
+			<camel:unmarshal ref="bindyDataformat" />
+			<camel:to uri="#{queueIn}" />
+			<!-- queuingservice:queue:in  -->
+		</camel:route>
+		
+		<camel:route>
+			<camel:from uri="#{queueIn}" />
+			<camel:to uri="bean:incidentSaver?method=process" />
+		</camel:route>
+		 
+		<camel:route>
+			<camel:from uri="cxf:bean:reportIncident" />
+			<camel:setHeader headerName="origin">
+				<camel:constant>webservice</camel:constant>
+			</camel:setHeader>
+			<camel:convertBodyTo type="org.apache.camel.example.reportincident.InputReportIncident" />
+			<camel:to uri="bean:webservice" />
+			<camel:inOnly uri="queuingservice:queue:in" />
+			<camel:transform>
+				<camel:method bean="feedback" method="setOk" />
+			</camel:transform>
+			
+		</camel:route>
+    </camel:camelContext>
+		
+	<osgix:cm-properties id="camelProps" persistent-id="org.apache.camel.example.reportincident.routing">
+		<prop key="uriFile"/>
+		<prop key="queueIn"/>
+	</osgix:cm-properties>
+
+
+</beans>

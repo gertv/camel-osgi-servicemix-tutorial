@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		Licensed to the Apache Software Foundation (ASF) under one or more
+		contributor license agreements. See the NOTICE file distributed with
+		this work for additional information regarding copyright ownership.
+		The ASF licenses this file to You under the Apache License, Version
+		2.0 (the "License"); you may not use this file except in compliance
+		with the License. You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0 Unless required by
+		applicable law or agreed to in writing, software distributed under the
+		License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+		CONDITIONS OF ANY KIND, either express or implied. See the License for
+		the specific language governing permissions and limitations under the
+		License.
+	-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.apache.camel.example</groupId>
+	<artifactId>reportincident.service</artifactId>
+	<packaging>bundle</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>Report prg.apache.camel.example.reportincident.model.Incident Service Bundle</name>
+
+	<properties>
+		<bundle.symbolicName>reportincident.service</bundle.symbolicName>
+		<bundle.namespace>org.apache.camel.example.reportincident.service</bundle.namespace>
+		<felix-version>1.4.3</felix-version>
+		<spring-osgi-version>1.2.0-rc1</spring-osgi-version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.camel.example</groupId>
+			<artifactId>reportincident.model</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel.example</groupId>
+			<artifactId>reportincident.persistence</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!--  test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>2.5.6</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.osgi</groupId>
+			<artifactId>spring-osgi-core</artifactId>
+			<version>${spring-osgi-version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- to compile with 1.5 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+
+			<!-- to generate the MANIFEST-FILE of the bundle -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<version>${felix-version}</version>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+						<Bundle-Version>${pom.version}</Bundle-Version>
+						<Import-Package>
+							javax.xml.bind,
+							javax.jws,
+							javax.jws.soap,
+							javax.transaction,
+							javax.xml.bind.annotation,
+							javax.xml.namespace,
+							javax.xml.ws,
+							org.aopalliance.aop,
+							org.apache.camel.example.reportincident.dao,
+							org.springframework.aop,
+							org.springframework.aop.framework,
+							org.springframework.transaction,
+							org.springframework.transaction.interceptor,
+							*
+						</Import-Package>
+						<Private-Package>
+							org.apache.camel.example.reportincident.service.impl
+						</Private-Package>
+						<Export-Package>
+							'=META-INF.wsdl',
+							${bundle.namespace}.*;version="${pom.version}"					
+						</Export-Package>
+						<_failok>true</_failok>
+					</instructions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>

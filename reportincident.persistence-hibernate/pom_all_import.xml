@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.apache.camel.example</groupId>
+	<artifactId>reportincident.persistence</artifactId>
+	<packaging>bundle</packaging>
+	<name>Report prg.apache.camel.example.reportincident.model.Incident Persistence Bundle</name>
+	<version>1.0-SNAPSHOT</version>
+	<url>http://www.springframework.org/osgi
+	</url>
+	<properties>
+		<spring-version>2.5.6</spring-version>
+		<felix-version>1.4.3</felix-version>
+		<camel-version>2.0-M1</camel-version>
+		<hibernate-version>3.3.1.GA</hibernate-version>
+		<asm-version>1.5.3</asm-version>
+		<jta-version>1.0.1B</jta-version>
+		<commons-dbcp-version>1.2.2</commons-dbcp-version>
+		<mysql-version>5.1.6</mysql-version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.camel.example</groupId>
+			<artifactId>reportincident.model</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>${asm-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>${jta-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>${commons-dbcp-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql-version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- to compile with 1.5 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+
+			<!-- to generate the MANIFEST-FILE of the bundle -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<version>${felix-version}</version>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+						<Import-Package>
+                            META-INF.org.apache.camel.example.reportincident.model,
+                            com.mysql.jdbc,
+                            javassist,
+                            javassist.util,
+                            javassist.util.proxy,
+                            javax.transaction,
+                            org.apache.camel.example.reportincident.model,
+                            org.apache.commons.dbcp,
+                            org.hibernate;version="${hibernate-version}";uses:="javax.transaction,org.hibernate.classic,org.hibernate.criterion,org.hibernate.engine,org.hibernate.jdbc,org.hibernate.metadata,org.hibernate.stat,org.hibernate.transform,org.hibernate.type",
+                            org.hibernate.action;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.cache,org.hibernate.collection,org.hibernate.engine,org.hibernate.persister.collection,org.hibernate.persister.entity",
+                            org.hibernate.bytecode;version="${hibernate-version}";uses:="org.hibernate.bytecode.util,org.hibernate.proxy",
+                            org.hibernate.bytecode.cglib;version="${hibernate-version}";uses:="org.hibernate.bytecode,org.hibernate.bytecode.util,org.hibernate.proxy,org.hibernate.repackage.cglib.asm,org.hibernate.repackage.cglib.beans,org.hibernate.repackage.cglib.proxy,org.hibernate.repackage.cglib.reflect",
+                            org.hibernate.bytecode.javassist;version="${hibernate-version}";uses:="javassist.bytecode,javassist.util.proxy,org.hibernate.bytecode,org.hibernate.bytecode.util,org.hibernate.proxy",
+                            org.hibernate.bytecode.util;version="${hibernate-version}",
+                            org.hibernate.cache;version="${hibernate-version}";uses:="javax.transaction,net.sf.ehcache,net.sf.swarmcache,org.hibernate,org.hibernate.cache.access,org.hibernate.cfg,org.hibernate.engine,org.hibernate.transaction,org.hibernate.type,org.jboss.cache,org.jboss.cache.optimistic,org.slf4j",
+                            org.hibernate.cache.access;version="${hibernate-version}";uses:="org.hibernate.cache",
+                            org.hibernate.cache.entry;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.collection,org.hibernate.engine,org.hibernate.event,org.hibernate.persister.collection,org.hibernate.persister.entity",
+                            org.hibernate.cache.impl;version="${hibernate-version}";uses:="org.hibernate.cache,org.hibernate.cfg,org.hibernate.mapping",
+                            org.hibernate.cache.impl.bridge;version="${hibernate-version}";uses:="org.hibernate.cache,org.hibernate.cache.access,org.hibernate.cfg",
+                            org.hibernate.cache.jbc2;version="${hibernate-version}";uses:="javax.transaction,org.hibernate.cache,org.hibernate.cfg,org.jboss.cache,org.jboss.cache.config",
+                            org.hibernate.cache.jbc2.access;version="${hibernate-version}";uses:="org.hibernate.cache,org.hibernate.cache.access,org.hibernate.cache.jbc2",
+                            org.hibernate.cache.jbc2.builder;version="${hibernate-version}";uses:="org.hibernate.cache,org.hibernate.cfg,org.jboss.cache,org.jgroups",
+                            org.hibernate.cache.jbc2.collection;version="${hibernate-version}";uses:="org.hibernate.cache,org.hibernate.cache.access,org.hibernate.cache.jbc2.access,org.jboss.cache",
+                            org.hibernate.cache.jbc2.entity;version="${hibernate-version}";uses:="org.hibernate.cache,org.hibernate.cache.access,org.hibernate.cache.jbc2.access,org.jboss.cache",
+                            org.hibernate.cache.jbc2.query;version="${hibernate-version}";uses:="org.hibernate.cache,org.jboss.cache",
+                            org.hibernate.cache.jbc2.timestamp;version="${hibernate-version}";uses:="org.hibernate.cache,org.jboss.cache,org.jboss.cache.notifications.event",
+                            org.hibernate.cache.jbc2.util;version="${hibernate-version}";uses:="org.hibernate.cache,org.jboss.cache,org.jboss.cache.config,org.jboss.cache.optimistic",
+                            org.hibernate.cfg;version="${hibernate-version}";uses:="org.dom4j,org.hibernate,org.hibernate.bytecode,org.hibernate.cache,org.hibernate.connection,org.hibernate.dialect,org.hibernate.dialect.function,org.hibernate.engine,org.hibernate.engine.query.sql,org.hibernate.event,org.hibernate.exception,org.hibernate.hql,org.hibernate.jdbc,org.hibernate.jdbc.util,org.hibernate.mapping,org.hibernate.proxy,org.hibernate.tool.hbm2ddl,org.hibernate.transaction,org.hibernate.type,org.w3c.dom,org.xml.sax",
+                            org.hibernate.classic;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.type",
+                            org.hibernate.collection;version="${hibernate-version}";uses:="org.dom4j,org.hibernate,org.hibernate.engine,org.hibernate.loader,org.hibernate.persister.collection,org.hibernate.type",
+                            org.hibernate.connection;version="${hibernate-version}";uses:="javax.sql,org.hibernate",
+                            org.hibernate.context;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.classic,org.hibernate.engine,org.slf4j",
+                            org.hibernate.criterion;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.impl,org.hibernate.persister.collection,org.hibernate.transform,org.hibernate.type",
+                            org.hibernate.dialect;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.dialect.function,org.hibernate.dialect.lock,org.hibernate.engine,org.hibernate.exception,org.hibernate.persister.entity,org.hibernate.sql,org.hibernate.type,org.slf4j",
+                            org.hibernate.dialect.function;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.dialect,org.hibernate.engine,org.hibernate.type",
+                            org.hibernate.dialect.lock;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.persister.entity",
+                            org.hibernate.engine;version="${hibernate-version}";uses:="javax.transaction,org.hibernate,org.hibernate.action,org.hibernate.cache,org.hibernate.cfg,org.hibernate.classic,org.hibernate.collection,org.hibernate.connection,org.hibernate.dialect,org.hibernate.dialect.function,org.hibernate.engine.loading,org.hibernate.engine.query,org.hibernate.engine.query.sql,org.hibernate.event,org.hibernate.exception,org.hibernate.id,org.hibernate.impl,org.hibernate.jdbc,org.hibernate.loader.custom,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.property,org.hibernate.proxy,org.hibernate.sql,org.hibernate.stat,org.hibernate.transform,org.hibernate.type,org.slf4j",
+                            org.hibernate.engine.loading;version="${hibernate-version}";uses:="org.hibernate.collection,org.hibernate.engine,org.hibernate.persister.collection",
+                            org.hibernate.engine.query;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.engine.query.sql,org.hibernate.event,org.hibernate.hql,org.hibernate.loader.custom.sql,org.hibernate.type",
+                            org.hibernate.engine.query.sql;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.type",
+                            org.hibernate.engine.transaction;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.slf4j",
+                            org.hibernate.event;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.cfg,org.hibernate.collection,org.hibernate.engine,org.hibernate.persister.collection,org.hibernate.persister.entity",
+                            org.hibernate.event.def;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.collection,org.hibernate.engine,org.hibernate.event,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.type",
+                            org.hibernate.exception;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.dialect",
+                            org.hibernate.hql;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.event,org.hibernate.transform,org.hibernate.type",
+                            org.hibernate.hql.antlr;version="${hibernate-version}";uses:="antlr,antlr.collections",
+                            org.hibernate.hql.ast;version="${hibernate-version}";uses:="antlr,antlr.collections,org.hibernate,org.hibernate.engine,org.hibernate.event,org.hibernate.hql,org.hibernate.hql.ast.tree,org.hibernate.hql.ast.util,org.hibernate.id,org.hibernate.type",
+                            org.hibernate.hql.ast.exec;version="${hibernate-version}";uses:="antlr.collections,org.hibernate,org.hibernate.engine,org.hibernate.hql.ast,org.hibernate.persister.entity,org.slf4j",
+                            org.hibernate.hql.ast.tree;version="${hibernate-version}";uses:="antlr,antlr.collections,org.hibernate,org.hibernate.dialect.function,org.hibernate.engine,org.hibernate.hql.ast,org.hibernate.hql.ast.util,org.hibernate.param,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.sql,org.hibernate.type,org.slf4j",
+                            org.hibernate.hql.ast.util;version="${hibernate-version}";uses:="antlr,antlr.collections,antlr.collections.impl,org.hibernate,org.hibernate.dialect.function,org.hibernate.engine,org.hibernate.hql.ast,org.hibernate.hql.ast.tree,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.sql,org.hibernate.type,org.slf4j",
+                            org.hibernate.hql.classic;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.dialect,org.hibernate.engine,org.hibernate.event,org.hibernate.hql,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.transform,org.hibernate.type",
+                            org.hibernate.id;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.dialect,org.hibernate.engine,org.hibernate.id.insert,org.hibernate.sql,org.hibernate.type,org.slf4j",
+                            org.hibernate.id.enhanced;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.dialect,org.hibernate.engine,org.hibernate.type,org.slf4j",
+                            org.hibernate.id.insert;version="${hibernate-version}";uses:="org.hibernate.dialect,org.hibernate.engine,org.hibernate.id",
+                            org.hibernate.impl;version="${hibernate-version}";uses:="javax.naming,javax.naming.event,javax.transaction,org.hibernate,org.hibernate.cache,org.hibernate.cfg,org.hibernate.classic,org.hibernate.collection,org.hibernate.connection,org.hibernate.criterion,org.hibernate.dialect,org.hibernate.dialect.function,org.hibernate.engine,org.hibernate.engine.query,org.hibernate.engine.query.sql,org.hibernate.event,org.hibernate.exception,org.hibernate.hql,org.hibernate.id,org.hibernate.jdbc,org.hibernate.loader,org.hibernate.loader.custom,org.hibernate.metadata,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.proxy,org.hibernate.stat,org.hibernate.transaction,org.hibernate.transform,org.hibernate.type,org.hibernate.util,org.slf4j",
+                            org.hibernate.intercept;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine",
+                            org.hibernate.intercept.cglib;version="${hibernate-version}";uses:="org.hibernate.engine,org.hibernate.intercept",
+                            org.hibernate.intercept.javassist;version="${hibernate-version}";uses:="org.hibernate.engine,org.hibernate.intercept",
+                            org.hibernate.jdbc;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.dialect,org.hibernate.engine,org.slf4j",
+                            org.hibernate.jdbc.util;version="${hibernate-version}",
+                            org.hibernate.jmx;version="${hibernate-version}";uses:="javax.naming,org.hibernate,org.hibernate.classic,org.hibernate.engine,org.hibernate.metadata,org.hibernate.stat",
+                            org.hibernate.loader;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.dialect,org.hibernate.engine,org.hibernate.hql,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.sql,org.hibernate.transform,org.hibernate.type",
+                            org.hibernate.loader.collection;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.loader,org.hibernate.persister.collection,org.hibernate.type",
+                            org.hibernate.loader.criteria;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.criterion,org.hibernate.dialect,org.hibernate.engine,org.hibernate.impl,org.hibernate.persister.entity,org.hibernate.transform,org.hibernate.type",
+                            org.hibernate.loader.custom;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.hql,org.hibernate.loader,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.transform,org.hibernate.type",
+                            org.hibernate.loader.custom.sql;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.engine.query.sql,org.hibernate.persister.collection,org.hibernate.persister.entity",
+                            org.hibernate.loader.entity;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.loader,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.transform,org.hibernate.type",
+                            org.hibernate.loader.hql;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.dialect,org.hibernate.engine,org.hibernate.event,org.hibernate.hql.ast,org.hibernate.hql.ast.tree,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.transform,org.hibernate.type",
+                            org.hibernate.lob;version="${hibernate-version}",
+                            org.hibernate.mapping;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.dialect,org.hibernate.dialect.function,org.hibernate.engine,org.hibernate.id,org.hibernate.property,org.hibernate.tool.hbm2ddl,org.hibernate.type",
+                            org.hibernate.metadata;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.type",
+                            org.hibernate.param;version="${hibernate-version}";uses:="org.hibernate.engine,org.hibernate.type",
+                            org.hibernate.persister;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.cache.access,org.hibernate.cfg,org.hibernate.engine,org.hibernate.mapping,org.hibernate.persister.collection,org.hibernate.persister.entity",
+                            org.hibernate.persister.collection;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.cache,org.hibernate.cache.access,org.hibernate.cache.entry,org.hibernate.cfg,org.hibernate.collection,org.hibernate.dialect,org.hibernate.engine,org.hibernate.exception,org.hibernate.id,org.hibernate.loader.collection,org.hibernate.mapping,org.hibernate.metadata,org.hibernate.persister.entity,org.hibernate.sql,org.hibernate.type",
+                            org.hibernate.persister.entity;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.cache.access,org.hibernate.cache.entry,org.hibernate.dialect.lock,org.hibernate.engine,org.hibernate.id,org.hibernate.jdbc,org.hibernate.loader.entity,org.hibernate.mapping,org.hibernate.metadata,org.hibernate.sql,org.hibernate.tuple.entity,org.hibernate.type",
+                            org.hibernate.pretty;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.type",
+                            org.hibernate.property;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.mapping,org.hibernate.type,org.slf4j",
+                            org.hibernate.proxy;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.type",
+                            org.hibernate.fr.choregie.proxy.dom4j;version="${hibernate-version}";uses:="org.dom4j,org.hibernate,org.hibernate.engine,org.hibernate.proxy,org.hibernate.type",
+                            orfr.choregie.proxyernate.proxy.map;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.proxy,org.hibernate.type",
+                            org.hibernate.fr.choregie.proxy.pojo;version="${hibernate-version}";uses:="org.hibernate.engine,org.hibernate.typefr.choregie.proxy
+                            org.hibernate.proxy.pojo.cglib;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.proxy,org.hifr.choregie.proxyte.type",
+                            org.hibernate.proxy.pojo.javassist;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.proxy,org.hibernate.type",
+                            org.hibernate.repackage.cglib.asm;version="${hibernate-version}",
+                            org.hibernate.repackage.cglib.asm.attrs;version="${hibernate-version}";uses:="org.hibernate.repackage.cglib.asm",
+                            org.hibernate.repackage.cglib.beans;version="${hibernate-version}";uses:="org.hibernate.repackage.cglib.asm,org.hibernate.repackage.cglib.core",
+                            org.hibernate.repackage.cglib.core;version="${hibernate-version}";uses:="org.hibernate.repackage.cglib.asm",
+                            org.hibernate.repackage.cglib.proxy;version="${hibernate-version}";uses:="org.hibernate.repackage.cglib.asm,org.hibernate.repackage.cglib.core,org.hibernate.repackage.cglib.reflect",
+                            org.hibernate.repackage.cglib.reflect;version="${hibernate-version}";uses:="org.hibernate.repackage.cglib.asm,org.hibernate.repackage.cglib.core",
+                            org.hibernate.repackage.cglib.transform;version="${hibernate-version}";uses:="org.apache.tools.ant,org.apache.tools.ant.types,org.hibernate.repackage.cglib.asm,org.hibernate.repackage.cglib.core",
+                            org.hibernate.repackage.cglib.transform.hook;version="${hibernate-version}";uses:="org.hibernate.repackage.cglib.asm,org.hibernate.repackage.cglib.transform",
+                            org.hibernate.repackage.cglib.transform.impl;version="${hibernate-version}";uses:="org.hibernate.repackage.cglib.asm,org.hibernate.repackage.cglib.core",
+                            org.hibernate.repackage.cglib.util;version="${hibernate-version}";uses:="org.hibernate.repackage.cglib.asm,org.hibernate.repackage.cglib.core",
+                            org.hibernate.secure;version="${hibernate-version}";uses:="javax.security.auth,javax.security.jacc,org.hibernate,org.hibernate.cfg,org.hibernate.event",
+                            org.hibernate.sql;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.dialect,org.hibernate.dialect.function,org.hibernate.type",
+                            org.hibernate.stat;version="${hibernate-version}";uses:="org.hibernate.cache,org.hibernate.engine",
+                            org.hibernate.tool.hbm2ddl;version="${hibernate-version}";uses:="org.apache.tools.ant,org.apache.tools.ant.types,org.hibernate,org.hibernate.cfg,org.hibernate.connection,org.hibernate.dialect",
+                            org.hibernate.tool.instrument;version="${hibernate-version}";uses:="org.apache.tools.ant,org.apache.tools.ant.types,org.hibernate.bytecode,org.hibernate.bytecode.util",
+                            org.hibernate.tool.instrument.cglib;version="${hibernate-version}";uses:="org.hibernate.bytecode,org.hibernate.bytecode.util",
+                            org.hibernate.tool.instrument.javassist;version="${hibernate-version}";uses:="org.hibernate.bytecode,org.hibernate.bytecode.util",
+                            org.hibernate.transaction;version="${hibernate-version}";uses:="javax.naming,javax.transaction,javax.transaction.xa,org.hibernate,org.hibernate.engine,org.hibernate.jdbc",
+                            org.hibernate.transform;version="${hibernate-version}",
+                            org.hibernate.tuple;version="${hibernate-version}";uses:="org.dom4j,org.hibernate,org.hibernate.bytecode,org.hibernate.engine,org.hibernate.id,org.hibernate.mapping,org.hibernate.property,org.hibernate.type",
+                            org.hibernate.tuple.component;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.mapping,org.hibernate.property,org.hibernate.tuple",
+                            org.hibernate.tuple.entity;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.engine,org.hibernate.mapping,org.hibernate.property,org.hibernate.proxy,org.hibernate.tuple,org.hibernate.type",
+                            org.hibernate.type;version="${hibernate-version}";uses:="org.dom4j,org.hibernate,org.hibernate.collection,org.hibernate.dialect,org.hibernate.engine,org.hibernate.persister.collection,org.hibernate.persister.entity,org.hibernate.tuple,org.hibernate.tuple.component,org.hibernate.usertype",
+                            org.hibernate.usertype;version="${hibernate-version}";uses:="org.hibernate,org.hibernate.collection,org.hibernate.engine,org.hibernate.persister.collection,org.hibernate.type",
+                            org.hibernate.util;version="${hibernate-version}";uses:="javax.naming,javax.transaction,org.dom4j,org.dom4j.io,org.hibernate,org.hibernate.cfg,org.hibernate.dialect,org.hibernate.dialect.function,org.hibernate.engine,org.hibernate.property,org.hibernate.type,org.slf4j,org.xml.sax",
+                            org.springframework.orm,
+                            org.springframework.orm.hibernate3,
+                            org.springframework.jdbc.support,
+                            org.springframework.jdbc.support.lob,
+                            org.springframework.transaction,
+                            *
+                        </Import-Package>
+						<Private-Package>
+							org.apache.camel.example.reportincident.dao.impl
+						</Private-Package>
+						<Export-Package>
+							org.apache.camel.example.reportincident.dao
+						 </Export-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+	
+</project>
