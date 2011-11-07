@@ -5,12 +5,22 @@
              version="2.0">
 
     <persistence-unit name="reportIncident" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+
         <class>org.apache.camel.example.reportincident.model.Incident</class>
-        <exclude-unlisted-classes>true</exclude-unlisted-classes> 
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
         <properties>
-            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='add,deleteTableContents')"/>
-            <!-- <property name="openjpa.Log" value="log4j"/> -->
-            <property name="openjpa.Log" value="commons" />
+            <property name="openjpa.jdbc.SynchronizeMappings"
+                      value="buildSchema(SchemaAction='add,deleteTableContents')"/>
+            <property name="openjpa.Log"
+                      value="DefaultLevel=TRACE, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
+            <property name="openjpa.jdbc.DBDictionary"
+                      value="h2(useSchemaName=true)"/>
+            <property name="openjpa.jdbc.Schema"
+                      value="REPORT"/>
         </properties>
 
     </persistence-unit>

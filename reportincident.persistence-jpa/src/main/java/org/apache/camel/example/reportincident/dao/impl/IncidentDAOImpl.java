@@ -25,9 +25,8 @@ import org.apache.camel.example.reportincident.model.Incident;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class IncidentDAOImpl
-  implements IncidentDAO
-{
+public class IncidentDAOImpl implements IncidentDAO {
+
   private static final transient Log LOG = LogFactory.getLog(IncidentDAOImpl.class);
 
   @PersistenceContext
@@ -65,8 +64,7 @@ public class IncidentDAOImpl
     this.em.flush();
   }
 
-  public void saveIncident(Incident incident)
-  {
+  public void saveIncident(Incident incident) {
     this.em.persist(incident);
     this.em.flush();
   }

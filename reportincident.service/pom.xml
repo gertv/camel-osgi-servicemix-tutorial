@@ -139,8 +139,8 @@
 				<configuration>
 					<manifestLocation>META-INF</manifestLocation>
 					<instructions>
-						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
-						<Bundle-Version>${pom.version}</Bundle-Version>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Bundle-Version>${project.version}</Bundle-Version>
 						<Import-Package>
 							javax.xml.bind,
 							javax.jws,
@@ -163,7 +163,7 @@
 						</Private-Package>
 						<Export-Package>
 							'=META-INF.wsdl',
-							org.apache.camel.example.reportincident.service;version="${pom.version}"					
+							org.apache.camel.example.reportincident.service;version="${project.version}"
 						</Export-Package>
 						<_failok>true</_failok>
 					</instructions>

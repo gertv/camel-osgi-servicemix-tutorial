@@ -16,22 +16,16 @@
  */
 package org.apache.camel.example.reportincident.internal;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import org.apache.camel.Exchange;
 import org.apache.camel.example.reportincident.model.Incident;
 import org.apache.camel.example.reportincident.service.IncidentService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class IncidentSaver {
 
@@ -77,9 +71,9 @@ public class IncidentSaver {
 		        
 				LOG.debug("Count : " + count + ", " + incident.toString());
 				
-				// Save prg.apache.camel.example.reportincident.model.Incident
+				// Save org.apache.camel.example.reportincident.model.Incident
 				incidentService.saveIncident(incident);
-				LOG.debug("org.apache.camel.example.reportincident.model.Incident saved");
+				LOG.debug(">>> org.apache.camel.example.reportincident.model.Incident saved");
 			}
 
 			count++;

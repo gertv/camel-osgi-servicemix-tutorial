@@ -38,8 +38,6 @@
 
 
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
-    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
-    <import resource="classpath:META-INF/cxf/cxf-extension-http-jetty.xml"/>
 
     <context:property-placeholder properties-ref="camelProps"/>
 
@@ -72,7 +70,7 @@
 
     <camelContext trace="true" xmlns="http://camel.apache.org/schema/spring">
 
-        <route>
+        <route id="fileToQueueIn">
             <from uri="file://data/reportincident/?move=backup/${date:now:yyyyMMdd}/${file:name.noext}.bak"/>
             <setHeader headerName="origin">
                 <constant>file</constant>
@@ -81,12 +79,12 @@
             <to uri="activemq:queue:in"/>
         </route>
 
-        <route>
+        <route id="queueIntoIncidentSaver">
             <from uri="activemq:queue:in"/>
             <to uri="bean:incidentSaver?method=process"/>
         </route>
 
-        <route>
+        <route id="webServiceToQueueIn">
             <from uri="cxf:bean:reportIncident"/>
             <setHeader headerName="origin">
                 <constant>webservice</constant>

@@ -27,11 +27,12 @@ import java.util.Date;
 
 @CsvRecord(separator = ",")
 @Entity
-public class Incident extends org.apache.camel.example.reportincident.model.Abstract implements Serializable {
+@Table(name = "T_INCIDENT")
+public class Incident extends Abstract implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "INCIDENT_REF")
+    @Column(name = "INCIDENT_REF", length = 55)
     @DataField(pos = 1)
     private String incidentRef;
 
@@ -39,15 +40,15 @@ public class Incident extends org.apache.camel.example.reportincident.model.Abst
     @DataField(pos = 2, pattern = "dd-mm-yyyy")
     private Date incidentDate;
 
-    @Column(name = "GIVEN_NAME")
+    @Column(name = "GIVEN_NAME", length = 35)
     @DataField(pos = 3)
     private String givenName;
 
-    @Column(name = "FAMILY_NAME")
+    @Column(name = "FAMILY_NAME", length = 35)
     @DataField(pos = 4)
     private String familyName;
 
-    @Column(name = "SUMMARY")
+    @Column(name = "SUMMARY", length = 35)
     @DataField(pos = 5)
     private String summary;
 
@@ -55,16 +56,17 @@ public class Incident extends org.apache.camel.example.reportincident.model.Abst
     @DataField(pos = 6)
     private String details;
 
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", length = 60)
     @DataField(pos = 7)
     private String email;
 
-    @Column(name = "PHONE")
+    @Column(name = "PHONE", length = 35)
     @DataField(pos = 8)
     private String phone;
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "INCIDENT_ID")
     private long incidentId;
 
     @Column(name = "CREATION_USER")

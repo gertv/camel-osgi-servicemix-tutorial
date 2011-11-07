@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Built-By: charlesmoulliard
-Build-Jdk: 1.6.0_24
+Build-Jdk: 1.6.0_26
 Bundle-Version: 1.0.0.SNAPSHOT
 Tool: Bnd-0.0.357
 Bundle-Name: Reportincident :: Routing Bundle
-Bnd-LastModified: 1305016892086
+Bnd-LastModified: 1320678050082
 Created-By: Apache Maven Bundle Plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: routing
@@ -13,34 +13,35 @@ Import-Package: META-INF.cxf,META-INF.cxf.osgi,META-INF.wsdl,javax.jms
  .ws;version=0,org.apache.activemq.camel.component;version="[5.3,6.0)"
  ,org.apache.activemq.camel.converter;version="[5.3,6.0)",org.apache.a
  ctivemq.pool;version="5.4",org.apache.camel;version="[2.0,3.0)",org.a
- pache.camel.component;version="[2.0,3.0)",org.apache.camel.component.
- cxf;version="[2.0,3.0)",org.apache.camel.component.cxf.converter;vers
- ion="[2.0,3.0)",org.apache.camel.component.jms;version="[2.0,3.0)",or
- g.apache.camel.converter;version="[2.0,3.0)",org.apache.camel.convert
- er.jaxp;version="[2.0,3.0)",org.apache.camel.converter.stream;version
- ="[2.0,3.0)",org.apache.camel.dataformat.bindy;version="[2.0,3.0)",or
- g.apache.camel.dataformat.bindy.csv;version="[2.0,3.0)",org.apache.ca
- mel.example.reportincident,org.apache.camel.example.reportincident.mo
- del,org.apache.camel.example.reportincident.service;version="1.0",org
- .apache.camel.processor;version="[2.0,3.0)",org.apache.commons.loggin
- g,org.apache.cxf;version="2.3",org.apache.cxf.binding;version="2.3",o
- rg.apache.cxf.binding.corba;version="2.3",org.apache.cxf.binding.soap
- ;version="2.3",org.apache.cxf.binding.soap.spring;version="2.3",org.a
- pache.cxf.bus;version="2.3",org.apache.cxf.bus.resource;version="2.3"
- ,org.apache.cxf.bus.spring;version="2.3",org.apache.cxf.buslifecycle;
- version="2.3",org.apache.cxf.catalog;version="2.3",org.apache.cxf.con
- figuration;version="2.3",org.apache.cxf.configuration.spring;version=
- "2.3",org.apache.cxf.endpoint;version="2.3",org.apache.cxf.headers;ve
- rsion="2.3",org.apache.cxf.management;version="2.3",org.apache.cxf.ma
- nagement.jmx;version="2.3",org.apache.cxf.phase;version="2.3",org.apa
- che.cxf.resource;version="2.3",org.apache.cxf.service.factory;version
- ="2.3",org.apache.cxf.tools.common.extensions.soap;version="2.3",org.
- apache.cxf.transport;version="2.3",org.apache.cxf.transport.http;vers
- ion="2.3",org.apache.cxf.transport.http.policy;version="2.3",org.apac
- he.cxf.transport.http_jetty;version="2.3",org.apache.cxf.transport.ht
- tp_osgi;version="2.3",org.apache.cxf.transport.jms;version="2.3",org.
- apache.cxf.transports.http;version="2.3",org.apache.cxf.workqueue;ver
- sion="2.3",org.apache.cxf.wsdl;version="2.3",org.apache.cxf.wsdl11;ve
- rsion="2.3",org.springframework.beans.factory.config;version="3.0",or
- g.w3c.dom;version=0,org.xmlsoap.schemas.soap.envelope;version=0
+ pache.camel.builder;version="2.8",org.apache.camel.builder.xml;versio
+ n="2.8",org.apache.camel.component;version="[2.0,3.0)",org.apache.cam
+ el.component.cxf;version="[2.0,3.0)",org.apache.camel.component.cxf.c
+ onverter;version="[2.0,3.0)",org.apache.camel.component.jms;version="
+ [2.0,3.0)",org.apache.camel.converter;version="[2.0,3.0)",org.apache.
+ camel.converter.jaxp;version="[2.0,3.0)",org.apache.camel.converter.s
+ tream;version="[2.0,3.0)",org.apache.camel.dataformat.bindy;version="
+ [2.0,3.0)",org.apache.camel.dataformat.bindy.csv;version="[2.0,3.0)",
+ org.apache.camel.example.reportincident,org.apache.camel.example.repo
+ rtincident.model,org.apache.camel.example.reportincident.service;vers
+ ion="1.0",org.apache.camel.model;version="2.8",org.apache.camel.proce
+ ssor;version="[2.0,3.0)",org.apache.commons.logging,org.apache.cxf;ve
+ rsion="2.4",org.apache.cxf.binding;version="2.4",org.apache.cxf.bindi
+ ng.corba;version="2.4",org.apache.cxf.binding.soap;version="2.4",org.
+ apache.cxf.binding.soap.spring;version="2.4",org.apache.cxf.bus;versi
+ on="2.4",org.apache.cxf.bus.resource;version="2.4",org.apache.cxf.bus
+ .spring;version="2.4",org.apache.cxf.buslifecycle;version="2.4",org.a
+ pache.cxf.catalog;version="2.4",org.apache.cxf.configuration;version=
+ "2.4",org.apache.cxf.configuration.spring;version="2.4",org.apache.cx
+ f.endpoint;version="2.4",org.apache.cxf.headers;version="2.4",org.apa
+ che.cxf.management;version="2.4",org.apache.cxf.management.jmx;versio
+ n="2.4",org.apache.cxf.phase;version="2.4",org.apache.cxf.resource;ve
+ rsion="2.4",org.apache.cxf.service.factory;version="2.4",org.apache.c
+ xf.tools.common.extensions.soap;version="2.4",org.apache.cxf.transpor
+ t;version="2.4",org.apache.cxf.transport.http;version="2.4",org.apach
+ e.cxf.transport.http.policy;version="2.4",org.apache.cxf.transport.ht
+ tp_jetty;version="2.4",org.apache.cxf.transport.jms;version="2.4",org
+ .apache.cxf.transports.http;version="2.4",org.apache.cxf.workqueue;ve
+ rsion="2.4",org.apache.cxf.wsdl;version="2.4",org.apache.cxf.wsdl11;v
+ ersion="2.4",org.springframework.beans.factory.config;version="3.0",o
+ rg.w3c.dom;version=0
 
