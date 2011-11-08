@@ -67,7 +67,7 @@
 
     <!--
 
-    <feature name="reportincident" version="${pom.version}">
+    <feature name="reportincident" version="${project.version}">
         <feature version='${camel-version}'>camel-bindy</feature>
         <feature version='${camel-version}'>camel-cxf</feature>
         <feature version='${servicemix-version}'>camel-activemq</feature>

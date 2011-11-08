@@ -1,4 +1,3 @@
-
 /**
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -17,43 +16,41 @@
  */
 package org.apache.camel.example.reportincident;
 
-
-import static org.junit.Assert.*;
-
 import org.apache.camel.CamelContext;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
+import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-@ContextConfiguration
-public class ReportIncidentRoutesTest extends AbstractJUnit4SpringContextTests  {
-	
-	private static final transient Log LOG = LogFactory.getLog(ReportIncidentRoutesTest.class);
-	
-    @Autowired
-    protected CamelContext camelContext;
+
+/**
+ * Unit test of our routes
+ */
+public class ReportIncidentWithoutSpringTest {
+
+    private CamelContext camel;
 
     // should be the same address as we have in our route
-    private final static String ADDRESS = "http://localhost:8080/camel-example/incident";
-    //private final static QName endpointName = new QName("http://reportincident.example.camel.apache.org", "ReportIncidentEndpoint"); 
+    private static String ADDRESS = "http://localhost:8080/camel-example/incident";
+
+    protected void startCamel() throws Exception {
+    	camel = new DefaultCamelContext();
+        camel.addRoutes(new ReportIncidentRoute());
+        camel.start();
+    }
 
     protected static ReportIncidentEndpoint createCXFClient() {
         // we use CXF to create a client for us as its easier than JAXWS and works
         JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(ReportIncidentEndpoint.class);
         factory.setAddress(ADDRESS);
-        //factory.setEndpointName(endpointName);
         return (ReportIncidentEndpoint) factory.create();
     }
 
     @Test
-    public void testRendportIncident() throws Exception {
-    	
-    	assertNotNull(camelContext);
+    public void ReportIncidentResponse() throws Exception {
+        // start camel
+        startCamel();
 
         // create input parameter
         InputReportIncident input = new InputReportIncident();
@@ -67,13 +64,14 @@ public class ReportIncidentRoutesTest extends AbstractJUnit4SpringContextTests  
         input.setPhone("0045 2962 7576");
 
         // create the webservice client and send the request
-        ReportIncidentEndpoint client = createCXFClient();    
+        ReportIncidentEndpoint client = createCXFClient();
         OutputReportIncident out = client.reportIncident(input);
 
         // assert we got a OK back
-        assertEquals("0", out.getCode());
+        Assert.assertNotNull(out);
+        Assert.assertEquals("0", out.getCode());
 
+        // stop camel
+        camel.stop();
     }
-    
-
 }

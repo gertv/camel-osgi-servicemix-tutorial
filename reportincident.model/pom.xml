@@ -54,7 +54,7 @@
 				<configuration>
 					<manifestLocation>META-INF</manifestLocation>
 					<instructions>
-						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Export-Package>
 						    '=META-INF.org.apache.camel.example.reportincident.model',
 						    org.apache.camel.example.reportincident.model

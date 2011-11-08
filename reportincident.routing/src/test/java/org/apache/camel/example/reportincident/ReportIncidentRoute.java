@@ -18,7 +18,7 @@ package org.apache.camel.example.reportincident;
 
 import org.apache.camel.builder.RouteBuilder;
 
-public class ReportIncidentRoutes extends RouteBuilder {
+public class ReportIncidentRoute extends RouteBuilder {
 
     public void configure() throws Exception {
         // webservice response for OK
@@ -27,8 +27,7 @@ public class ReportIncidentRoutes extends RouteBuilder {
 
         // endpoint to our CXF webservice
         String cxfEndpoint = "cxf://http://localhost:8080/camel-example/incident"
-                + "?serviceClass=org.apache.camel.example.reportincident.ReportIncidentEndpoint"
-                + "&wsdlURL=wsdl/report_incident.wsdl";
+                + "?serviceClass=org.apache.camel.example.reportincident.ReportIncidentEndpoint";
 
         // first part from the webservice -> file backup
         from(cxfEndpoint)

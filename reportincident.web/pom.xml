@@ -240,7 +240,7 @@
 						<supportedProjectType>war</supportedProjectType>
 					</supportedProjectTypes>
 					<instructions>
-						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-ClassPath>
 							.,
 							WEB-INF/classes,

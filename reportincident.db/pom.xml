@@ -21,7 +21,7 @@
 	<groupId>org.apache.camel.example</groupId>
 	<artifactId>reportincident-db</artifactId>
 	<packaging>jar</packaging>
-	<name>Reportincident :: Report org.apache.camel.example.reportincident.model.Incident DB</name>
+	<name>Reportincident :: Reportincident :: DB</name>
 	<version>1.0-SNAPSHOT</version>
 	
 	<parent>

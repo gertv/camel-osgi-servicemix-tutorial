@@ -34,7 +34,7 @@
 		<dependency>
 			<groupId>org.apache.camel.example</groupId>
 			<artifactId>reportincident.model</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -103,7 +103,7 @@
 				<configuration>
 					<manifestLocation>META-INF</manifestLocation>
 					<instructions>
-						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Import-Package>
 							META-INF.org.apache.camel.example.reportincident.model,
 							org.hsqldb.jdbc,
