@@ -53,11 +53,13 @@
         <!-- CXF route -->
         <route id="webServiceResponse">
             <from uri="cxf:bean:reportIncident"/>
+
             <convertBodyTo type="org.apache.camel.example.reportincident.InputReportIncident"/>
+
             <log loggingLevel="INFO" message=">>> Web service called. Preparing response."/>
-            <!-- <camel:to uri="bean:webService" /> -->
+
             <transform>
-                <method bean="OK" method="code"/>
+                <simple>${ref:OK}</simple>
             </transform>
         </route>
 

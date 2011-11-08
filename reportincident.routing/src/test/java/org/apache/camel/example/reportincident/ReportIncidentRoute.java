@@ -34,7 +34,7 @@ public class ReportIncidentRoute extends RouteBuilder {
             // we need to convert the CXF payload to InputReportIncident that FilenameGenerator and velocity expects
             .convertBodyTo(InputReportIncident.class)
             // return OK as response
-            .transform(constant(OK));
+                .transform(constant(OK));
 
     }
 
