@@ -34,7 +34,7 @@ H2 DATABASE
 
     Next click on "connect" and the screen to manage the reportdb appears
 
-    STEP 5 : Create Schema and Tables using the script located in the file reportincident.db/src/main/config/h2-script.sql
+    STEP 5 : Create Schema and Tables using the script located in the file db/src/main/config/h2-script.sql
 
     Execute the scripts 1), 2) and 3) defined in this file
 
@@ -48,7 +48,7 @@ DEPLOYING
     STEP 3 : Open in a DOS windows or Unix terminal the directory bin
     STEP 4 : Edit the file /etc/org.apache.karaf.features.cfg and add the following features to boot
 
-    featuresBoot=karaf-framework,config,war,activemq-broker,activemq-spring,camel,camel-cxf,camel-activemq,camel-nmr,camel-jaxb,camel-bindy,jpa
+    featuresBoot=karaf-framework,config,war,activemq-broker,activemq-spring,camel,camel-cxf,camel-activemq,camel-jaxb,camel-bindy,jpa
 
     STEP 5 : Start ServiceMix servicemix.bat or ./servicemix
     STEP 6 : In the servicemix console, launch the commands to install features of reportincident demo

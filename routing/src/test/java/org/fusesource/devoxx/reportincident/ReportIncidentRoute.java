@@ -31,7 +31,7 @@ public class ReportIncidentRoute extends RouteBuilder {
 
         // first part from the webservice -> file backup
         from(cxfEndpoint)
-            // we need to convert the CXF payload to InputReportIncident that FilenameGenerator and velocity expects
+            // we need to convert the CXF payload to InputReportIncident
             .convertBodyTo(InputReportIncident.class)
             // return OK as response
                 .transform(constant(OK));
