@@ -53,7 +53,7 @@ DEPLOYING
     STEP 5 : Start ServiceMix servicemix.bat or ./servicemix
     STEP 6 : In the servicemix console, launch the commands to install features of reportincident demo
 
-    features:addUrl mvn:org.apache.camel.example.reportincident/features/1.0-SNAPSHOT/xml/features
+    features:addUrl mvn:org.fusesource.devoxx.reportincident/features/1.0-SNAPSHOT/xml/features
     features:install reportincident-jpa
 
     STEP 7 : Check if the project works fine and connect to the following url in your browser
@@ -65,13 +65,13 @@ DEPLOYING
     http://localhost:8181/reportincidentweb/
 
     STEP 9 : Copy incident file
-    cp ~/wks-projects/tutorial-osgi-camel-part2/reportincident.routing/src/data/csv-one-record.txt /Fuse/servers/apache-servicemix-4.4.1-fuse-01-06-devoxx/data/reportincident/
+    cp ~/wks-projects/tutorial-osgi-camel-part2/routing/src/data/csv-one-record.txt /Fuse/servers/apache-servicemix-4.4.1-fuse-01-06-devoxx/data/reportincident/
 
     STEP 10 : Use SOAPUi client and send this envelope to the server
 
     SOAP Enveloppe
     **************
-    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rep="http://reportincident.example.camel.apache.org">
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rep="http://reportincident.devoxx.fusesource.org">
        <soapenv:Header/>
        <soapenv:Body>
           <rep:inputReportIncident>

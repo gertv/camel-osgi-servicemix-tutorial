@@ -24,14 +24,14 @@
     <name>Reportincident :: Parent POM</name>
 
     <modules>
-        <module>reportincident.features</module>
-        <!-- <module>reportincident.model</module> -->
-        <module>reportincident.persistence-jpa</module>
-        <module>reportincident.service</module>
-        <module>reportincident.routing</module>
-        <module>reportincident.web</module>
-        <module>reportincident.webservice</module>
-        <!-- <module>reportincident.db</module> -->
+        <module>features</module>
+        <!-- <module>model</module> -->
+        <module>persistence-jpa</module>
+        <module>service</module>
+        <module>routing</module>
+        <module>web</module>
+        <module>webservice</module>
+        <!-- <module>db</module> -->
     </modules>
 
     <properties>
@@ -69,17 +69,17 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.apache.camel.example.reportincident</groupId>
+                <groupId>org.fusesource.devoxx.reportincident</groupId>
                 <artifactId>persistence-jpa</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.camel.example.reportincident</groupId>
+                <groupId>org.fusesource.devoxx.reportincident</groupId>
                 <artifactId>service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.camel.example.reportincident</groupId>
+                <groupId>org.fusesource.devoxx.reportincident</groupId>
                 <artifactId>webservice</artifactId>
                 <version>${project.version}</version>
             </dependency>
