@@ -16,19 +16,6 @@
  */
 package org.fusesource.devoxx.reportincident.dao;
 
-import java.util.List;
+public interface IncidentDAO {
 
-import org.fusesource.devoxx.reportincident.model.Incident;
-
-public interface IncidentDAO
-{
-  public abstract Incident getIncident(long paramLong);
-
-  public abstract List<Incident> findIncident();
-
-  public abstract List<Incident> findIncident(String paramString);
-
-  public abstract void saveIncident(Incident paramIncident);
-
-  public abstract void removeIncident(long paramLong);
 }
