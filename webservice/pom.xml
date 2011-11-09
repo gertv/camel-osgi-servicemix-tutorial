@@ -57,20 +57,9 @@
 
 	<build>
 
-        <sourceDirectory>${basedir}/target/generated/src/main/java</sourceDirectory>
+    <sourceDirectory>${basedir}/target/generated/src/main/java</sourceDirectory>
 
 		<plugins>
-
-			<!-- to compile with 1.5 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-				</configuration>
-			</plugin>
-
 			<!-- to generate the MANIFEST-FILE required by the bundle -->
 			<plugin>
 				<groupId>org.apache.felix</groupId>
@@ -81,25 +70,13 @@
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Import-Package>
-							javax.xml.bind,
-							javax.jws,
-							javax.jws.soap,
-							javax.xml.bind.annotation,
-							javax.xml.namespace,
-							javax.xml.ws,
-							org.aopalliance.aop,
-							org.fusesource.devoxx.reportincident.dao,
-							org.springframework.aop,
-							org.springframework.aop.framework,
-							org.springframework.transaction,
-							org.springframework.transaction.interceptor,
 							*
 						</Import-Package>
 						<Private-Package>
 						</Private-Package>
 						<Export-Package>
 							org.fusesource.devoxx.reportincident,
-     						'=META-INF.wsdl'
+     					META-INF.wsdl
 						</Export-Package>
 						<_failok>true</_failok>
 					</instructions>
@@ -128,11 +105,9 @@
 						</goals>
 					</execution>
 				</executions>
-
 			</plugin>
-
 		</plugins>
-	</build>
 
+	</build>
 
 </project>

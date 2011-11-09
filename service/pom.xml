@@ -135,33 +135,21 @@
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
-				<version>${felix-version}</version>
 				<configuration>
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Bundle-Version>${project.version}</Bundle-Version>
 						<Import-Package>
-							javax.xml.bind,
-							javax.jws,
-							javax.jws.soap,
-                            javax.persistence;version=2.0.0,
-							javax.transaction,
-							javax.xml.bind.annotation,
-							javax.xml.namespace,
-							javax.xml.ws,
-							org.aopalliance.aop,
-							org.fusesource.devoxx.reportincident.dao,
-							org.springframework.aop,
-							org.springframework.aop.framework,
-							org.springframework.transaction,
-							org.springframework.transaction.interceptor,
-							*
+              org.aopalliance.aop,
+							org.springframework.aop;version="[2.5,4.0)",
+              org.springframework.aop.framework;version="[2.5,4.0)",
+              *
 						</Import-Package>
 						<Private-Package>
 							org.fusesource.devoxx.reportincident.service.impl
 						</Private-Package>
 						<Export-Package>
-							'=META-INF.wsdl',
+						  META-INF.wsdl,
 							org.fusesource.devoxx.reportincident.service;version="${project.version}"
 						</Export-Package>
 						<_failok>true</_failok>

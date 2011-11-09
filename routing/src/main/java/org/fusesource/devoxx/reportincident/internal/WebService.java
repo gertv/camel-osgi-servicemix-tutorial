@@ -50,7 +50,7 @@ public class WebService {
 		// Convert the InputReportIncident into an prg.apache.camel.example.reportincident.model.Incident
 		Incident incident = new Incident();
 		
-		DateFormat format = new SimpleDateFormat( "dd-mm-yyyy" );
+		DateFormat format = new SimpleDateFormat( "dd-MM-yyyy" );
 		incident.setIncidentDate(format.parse(webincident.getIncidentDate()));
 		
 		incident.setDetails(webincident.getDetails());
