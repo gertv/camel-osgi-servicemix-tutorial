@@ -18,23 +18,23 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping schema="REPORT">
-	<class name="org.fusesource.devoxx.reportincident.model.Incident" table="T_INCIDENT">
-		<meta attribute="extends">Abstract</meta>
-		<id name="incidentId" column="INCIDENT_ID" type="long">
-			<generator class="native" />
-		</id>
-		
-		<property column="INCIDENT_REF" name="incidentRef" length="55" type="string" />
-		<property column="INCIDENT_DATE" lazy="false" length="8" name="incidentDate" type="timestamp" />
-		<property column="GIVEN_NAME" length="35" name="givenName" type="string" />
-		<property column="FAMILY_NAME" length="35" name="familyName" type="string" />
-		<property column="SUMMARY" length="35" name="summary" type="string" />
-		<property column="DETAILS" length="255" name="details" type="string" />
-		<property column="EMAIL" length="60" name="email" type="string" />
-		<property column="PHONE" length="35" name="phone" type="string" />
-		
+    <class name="org.fusesource.devoxx.reportincident.model.Incident" table="T_INCIDENT">
+        <meta attribute="extends">Abstract</meta>
+        <id name="incidentId" column="INCIDENT_ID" type="long">
+            <generator class="native" />
+        </id>
+        
+        <property column="INCIDENT_REF" name="incidentRef" length="55" type="string" />
+        <property column="INCIDENT_DATE" lazy="false" length="8" name="incidentDate" type="timestamp" />
+        <property column="GIVEN_NAME" length="35" name="givenName" type="string" />
+        <property column="FAMILY_NAME" length="35" name="familyName" type="string" />
+        <property column="SUMMARY" length="35" name="summary" type="string" />
+        <property column="DETAILS" length="255" name="details" type="string" />
+        <property column="EMAIL" length="60" name="email" type="string" />
+        <property column="PHONE" length="35" name="phone" type="string" />
+        
 
-		<property column="CREATION_DATE" generated="never" lazy="false" name="creationDate" type="timestamp" />
-		<property column="CREATION_USER" generated="never" lazy="false" name="creationUser" type="string" />
-	</class>
+        <property column="CREATION_DATE" generated="never" lazy="false" name="creationDate" type="timestamp" />
+        <property column="CREATION_USER" generated="never" lazy="false" name="creationUser" type="string" />
+    </class>
 </hibernate-mapping>

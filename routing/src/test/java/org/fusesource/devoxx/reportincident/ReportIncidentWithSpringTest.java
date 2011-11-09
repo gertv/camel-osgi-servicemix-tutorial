@@ -34,9 +34,9 @@ import static org.junit.Assert.assertNotNull;
 
 @ContextConfiguration
 public class ReportIncidentWithSpringTest extends AbstractJUnit4SpringContextTests  {
-	
-	private static final transient Log LOG = LogFactory.getLog(ReportIncidentWithSpringTest.class);
-	
+    
+    private static final transient Log LOG = LogFactory.getLog(ReportIncidentWithSpringTest.class);
+    
     @Autowired
     protected CamelContext camelContext;
 
@@ -53,8 +53,8 @@ public class ReportIncidentWithSpringTest extends AbstractJUnit4SpringContextTes
 
     @Test
     public void testRendportIncident() throws Exception {
-    	
-    	assertNotNull(camelContext);
+        
+        assertNotNull(camelContext);
 
         // create input parameter
         InputReportIncident input = new InputReportIncident();

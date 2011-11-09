@@ -34,7 +34,7 @@ public class ReportIncidentWithoutSpringTest {
     private static String ADDRESS = "http://localhost:8080/camel-example/incident";
 
     protected void startCamel() throws Exception {
-    	camel = new DefaultCamelContext();
+        camel = new DefaultCamelContext();
         camel.addRoutes(new ReportIncidentRoute());
         camel.start();
     }

@@ -16,11 +16,11 @@
     limitations under the License.
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:osgi="http://www.springframework.org/schema/osgi"
-	xmlns:osgix="http://www.springframework.org/schema/osgi-compendium"
-	xsi:schemaLocation="
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:osgi="http://www.springframework.org/schema/osgi"
+    xmlns:osgix="http://www.springframework.org/schema/osgi-compendium"
+    xsi:schemaLocation="
        http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
@@ -30,59 +30,59 @@
        http://www.springframework.org/schema/osgi-compendium
        http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd">
 
-	<context:annotation-config />
+    <context:annotation-config />
 
-	<!--  DB connection and persistence layer -->
-	<!--  DataSource Definition  -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql:///report" />
-		<property name="username" value="root" />
-		<property name="password" value="" />
-	</bean>
+    <!--  DB connection and persistence layer -->
+    <!--  DataSource Definition  -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql:///report" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
+    </bean>
 
 
-	<!--  Spring Data Access Exception Translator Definition	-->
-	<bean id="jdbcExceptionTranslator" class="org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator">
-		<property name="dataSource">
-			<ref bean="dataSource" />
-		</property>
-	</bean>
+    <!--  Spring Data Access Exception Translator Definition    -->
+    <bean id="jdbcExceptionTranslator" class="org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator">
+        <property name="dataSource">
+            <ref bean="dataSource" />
+        </property>
+    </bean>
 
-	<!--  Hibernate SessionFactory Definition -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    <!--  Hibernate SessionFactory Definition -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 
-		<property name="mappingLocations">
-			<list>
-				<value>classpath*:META-INF/org/apache/camel/example/reportincident/model/*.hbm.xml</value>
-			</list>
-		</property>
+        <property name="mappingLocations">
+            <list>
+                <value>classpath*:META-INF/org/apache/camel/example/reportincident/model/*.hbm.xml</value>
+            </list>
+        </property>
 
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.show_sql">false</prop>
-				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
-				<prop key="hibernate.jdbc.batch_size">10</prop>
-				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>
-				<!-- 
-				<prop key="hibernate.transaction.manager_lookup_class">org.springframework.orm.hibernate3.LocalTransactionManagerLookup</prop>
-				<prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</prop>
-				 -->
-			</props>
-		</property>
-		<property name="dataSource">
-			<ref bean="dataSource" />
-		</property>
-		
-	</bean>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.jdbc.batch_size">10</prop>
+                <prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop>
+                <!-- 
+                <prop key="hibernate.transaction.manager_lookup_class">org.springframework.orm.hibernate3.LocalTransactionManagerLookup</prop>
+                <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</prop>
+                 -->
+            </props>
+        </property>
+        <property name="dataSource">
+            <ref bean="dataSource" />
+        </property>
+        
+    </bean>
 
-	<!-- Hibernate Transaction Manager Definition -->
-	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory">
-			<ref local="sessionFactory" />
-		</property>
-	</bean>
+    <!-- Hibernate Transaction Manager Definition -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref local="sessionFactory" />
+        </property>
+    </bean>
 
 </beans>

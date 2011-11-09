@@ -25,55 +25,55 @@ import org.apache.commons.logging.LogFactory;
 import org.fusesource.devoxx.reportincident.service.IncidentService;
 
 public class IncidentServiceImpl implements IncidentService {
-	
-	private static final transient Log LOG = LogFactory.getLog(IncidentServiceImpl.class);
+    
+    private static final transient Log LOG = LogFactory.getLog(IncidentServiceImpl.class);
 
-	/** The incident dao. */
-	private IncidentDAO incidentDAO;
+    /** The incident dao. */
+    private IncidentDAO incidentDAO;
 
-	public void saveIncident(Incident incident) {
+    public void saveIncident(Incident incident) {
 
-		try {
-			getIncidentDAO().saveIncident(incident);
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		}
+        try {
+            getIncidentDAO().saveIncident(incident);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
 
-	}
+    }
 
-	public void removeIncident(long id) {
-		getIncidentDAO().removeIncident(id);
-	}
+    public void removeIncident(long id) {
+        getIncidentDAO().removeIncident(id);
+    }
 
-	public Incident getIncident(long id) {
-		return getIncidentDAO().getIncident(id);
-	}
+    public Incident getIncident(long id) {
+        return getIncidentDAO().getIncident(id);
+    }
 
-	public List<Incident> findIncident() {
-		return getIncidentDAO().findIncident();
-	}
+    public List<Incident> findIncident() {
+        return getIncidentDAO().findIncident();
+    }
 
-	public List<Incident> findIncident(String key) {
-		return getIncidentDAO().findIncident(key);
-	}
+    public List<Incident> findIncident(String key) {
+        return getIncidentDAO().findIncident(key);
+    }
 
-	/**
-	 * Gets the incident dao.
-	 * 
-	 * @return the incident dao
-	 */
-	public IncidentDAO getIncidentDAO() {
-		return incidentDAO;
-	}
+    /**
+     * Gets the incident dao.
+     * 
+     * @return the incident dao
+     */
+    public IncidentDAO getIncidentDAO() {
+        return incidentDAO;
+    }
 
-	/**
-	 * Sets the incident dao.
-	 * 
-	 * @param incidentDAO
-	 *            the new incident dao
-	 */
-	public void setIncidentDAO(IncidentDAO incidentDAO) {
-		this.incidentDAO = incidentDAO;
-	}
+    /**
+     * Sets the incident dao.
+     * 
+     * @param incidentDAO
+     *            the new incident dao
+     */
+    public void setIncidentDAO(IncidentDAO incidentDAO) {
+        this.incidentDAO = incidentDAO;
+    }
 
 }

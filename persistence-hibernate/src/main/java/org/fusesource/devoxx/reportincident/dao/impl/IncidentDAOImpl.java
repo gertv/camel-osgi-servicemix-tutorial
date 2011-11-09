@@ -32,8 +32,8 @@ import org.hibernate.impl.SessionImpl;
 public class IncidentDAOImpl implements IncidentDAO
 {
 
-	private static final transient Log LOG = LogFactory.getLog(IncidentDAOImpl.class);
-	
+    private static final transient Log LOG = LogFactory.getLog(IncidentDAOImpl.class);
+    
     /** The session factory. */
     private SessionFactory sessionFactory;
 
@@ -116,7 +116,7 @@ public class IncidentDAOImpl implements IncidentDAO
      */
     public void saveIncident( Incident Incident )
     {
-    	SessionImpl session = (SessionImpl) this.sessionFactory.getCurrentSession();
+        SessionImpl session = (SessionImpl) this.sessionFactory.getCurrentSession();
         this.sessionFactory.getCurrentSession().saveOrUpdate( Incident );
     }
 

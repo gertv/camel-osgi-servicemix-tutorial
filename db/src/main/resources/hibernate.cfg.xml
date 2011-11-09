@@ -41,17 +41,17 @@
 <!-- MySQL DB
 
 <hibernate-configuration>
-	<session-factory name="reportincident">
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql:///report</property>
-		<property name="hibernate.connection.username">report</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
-		<property name="hibernate.connection.password">report</property>
-		<property name="hibernate.show_sql">true</property>
+    <session-factory name="reportincident">
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql:///report</property>
+        <property name="hibernate.connection.username">report</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.connection.password">report</property>
+        <property name="hibernate.show_sql">true</property>
 
         <mapping resource="META-INF/org/apache/camel/example/reportincident/model/incident.hbm.xml"/>
-		
-	</session-factory>
+        
+    </session-factory>
 </hibernate-configuration>
 
 -->

@@ -17,15 +17,15 @@
 -->
 <beans xmlns="http://www.springframework.org/schema/beans" 
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xsi:schemaLocation="
-	     http://www.springframework.org/schema/beans
-	     http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- DAO Declarations -->
-	<bean id="incidentDAO" class="IncidentDAOImpl">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
-	</bean>
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <!-- DAO Declarations -->
+    <bean id="incidentDAO" class="IncidentDAOImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
 
 </beans>

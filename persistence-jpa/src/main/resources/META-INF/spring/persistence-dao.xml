@@ -21,11 +21,11 @@
        xmlns:osgi="http://www.springframework.org/schema/osgi"
        xmlns:osgix="http://www.springframework.org/schema/osgi-compendium"
        xsi:schemaLocation="
-	     http://www.springframework.org/schema/beans
-	     http://www.springframework.org/schema/beans/spring-beans.xsd
-	     http://www.springframework.org/schema/context
-	     http://www.springframework.org/schema/context/spring-context.xsd
-	     http://www.springframework.org/schema/osgi
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd
+         http://www.springframework.org/schema/osgi
          http://www.springframework.org/schema/osgi/spring-osgi.xsd
          http://www.springframework.org/schema/osgi-compendium
          http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd">
@@ -59,20 +59,20 @@
     -->
 
     <!-- OpenJPA Derby addapter
-	<bean id="jpaAdapterDerby" class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
-		<property name="databasePlatform" value="org.apache.openjpa.jdbc.sql.DerbyDictionary" />
-		<property name="database" value="DERBY" />
+    <bean id="jpaAdapterDerby" class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
+        <property name="databasePlatform" value="org.apache.openjpa.jdbc.sql.DerbyDictionary" />
+        <property name="database" value="DERBY" />
         <property name="showSql" value="true" />        
-	</bean>
-	 -->
+    </bean>
+     -->
 
     <!-- OpenJPA MySQL adapter
-	<bean id="jpaAdapterMYSQL"
-		class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
+    <bean id="jpaAdapterMYSQL"
+        class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
         <property name="databasePlatform" value="org.apache.openjpa.jdbc.sql.MySQLDictionary" />
-		<property name="showSql" value="true" />
-	</bean>
-	-->
+        <property name="showSql" value="true" />
+    </bean>
+    -->
 
     <!-- OpenJPA HSQL addapter
     <bean id="jpaAdapterHSQL" class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
@@ -90,14 +90,14 @@
 
 
     <!-- DataSource MYSQL
-	<bean id="dataSourceMYSQL" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="username" value="root" />
-		<property name="password" value="" />
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/reportincident" />
-		<property name="defaultAutoCommit" value="true"/>
-	</bean>
-	-->
+    <bean id="dataSourceMYSQL" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="username" value="root" />
+        <property name="password" value="" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/reportincident" />
+        <property name="defaultAutoCommit" value="true"/>
+    </bean>
+    -->
 
     <!-- DataSource Derby
      <bean id="dataSourceDERBY" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">

@@ -29,65 +29,65 @@ import java.util.*;
 
 public class IncidentSaver {
 
-	private static final transient Log LOG = LogFactory.getLog(IncidentSaver.class);
-	
-	private IncidentService incidentService = null;
+    private static final transient Log LOG = LogFactory.getLog(IncidentSaver.class);
+    
+    private IncidentService incidentService = null;
 
-	public void process(Exchange exchange) throws ParseException {
+    public void process(Exchange exchange) throws ParseException {
 
-		int count = 0;
+        int count = 0;
 
-		List<Map<String, Object>> models = new ArrayList<Map<String, Object>>();
-		Map<String, Object> model = new HashMap<String, Object>();
+        List<Map<String, Object>> models = new ArrayList<Map<String, Object>>();
+        Map<String, Object> model = new HashMap<String, Object>();
 
-		// Get models from message
-		models = (List<Map<String, Object>>) exchange.getIn().getBody();
-		
-		// Get Header origin from message
-		String origin = (String) exchange.getIn().getHeader("origin");
-		LOG.debug("Header origin : " + origin);
+        // Get models from message
+        models = (List<Map<String, Object>>) exchange.getIn().getBody();
+        
+        // Get Header origin from message
+        String origin = (String) exchange.getIn().getHeader("origin");
+        LOG.debug("Header origin : " + origin);
 
-		Iterator<Map<String, Object>> it = models.iterator();
-		
-		// Specify current Date
+        Iterator<Map<String, Object>> it = models.iterator();
+        
+        // Specify current Date
         DateFormat format = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );
         String currentDate = format.format( new Date() );
         Date creationDate = format.parse( currentDate );
         
-		while (it.hasNext()) {
+        while (it.hasNext()) {
 
-			model = it.next();
-			
-			LOG.debug("Model retrieved");
+            model = it.next();
+            
+            LOG.debug("Model retrieved");
 
-			for (String key : model.keySet()) {
-				
-				LOG.debug("Object retrieved : " + model.get(key).toString());
-				
-				// Retrieve incident from model
-				Incident incident = (Incident) model.get(key);
-				incident.setCreationDate(creationDate);
-		        incident.setCreationUser(origin);
-		        
-				LOG.debug("Count : " + count + ", " + incident.toString());
-				
-				// Save org.fusesource.devoxx.reportincident.model.Incident
-				incidentService.saveIncident(incident);
-				LOG.debug(">>> org.fusesource.devoxx.reportincident.model.Incident saved");
-			}
+            for (String key : model.keySet()) {
+                
+                LOG.debug("Object retrieved : " + model.get(key).toString());
+                
+                // Retrieve incident from model
+                Incident incident = (Incident) model.get(key);
+                incident.setCreationDate(creationDate);
+                incident.setCreationUser(origin);
+                
+                LOG.debug("Count : " + count + ", " + incident.toString());
+                
+                // Save org.fusesource.devoxx.reportincident.model.Incident
+                incidentService.saveIncident(incident);
+                LOG.debug(">>> org.fusesource.devoxx.reportincident.model.Incident saved");
+            }
 
-			count++;
-		}
+            count++;
+        }
 
-		LOG.debug("Nber of CSV records received by the csv bean : " + count);
+        LOG.debug("Nber of CSV records received by the csv bean : " + count);
 
-	}
-	
+    }
+    
     // Property used to inject service implementation
-	public void setIncidentService(IncidentService incidentService) {
-		this.incidentService = incidentService;
-	}
-	
-	
+    public void setIncidentService(IncidentService incidentService) {
+        this.incidentService = incidentService;
+    }
+    
+    
 
 }

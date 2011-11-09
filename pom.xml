@@ -25,13 +25,11 @@
 
     <modules>
         <module>features</module>
-        <!-- <module>model</module> -->
         <module>persistence-jpa</module>
         <module>service</module>
         <module>routing</module>
         <module>web</module>
         <module>webservice</module>
-        <!-- <module>db</module> -->
     </modules>
 
     <properties>

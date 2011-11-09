@@ -16,11 +16,11 @@
     limitations under the License.
 -->
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-	xmlns:tns="http://reportincident.devoxx.fusesource.org"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
-	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-	targetNamespace="http://reportincident.devoxx.fusesource.org">
+    xmlns:tns="http://reportincident.devoxx.fusesource.org"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    targetNamespace="http://reportincident.devoxx.fusesource.org">
 
     <!-- Type definitions for input- and output parameters for webservice -->
     <wsdl:types>

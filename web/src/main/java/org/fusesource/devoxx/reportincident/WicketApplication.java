@@ -26,29 +26,29 @@ import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
  */
 public class WicketApplication extends WebApplication
 {    
-	
-	/**
-	 * Init
-	 */
+    
+    /**
+     * Init
+     */
     public void init() {
         super.init();
         addComponentInstantiationListener(new SpringComponentInjector(this));
     }
 
-	
+    
     /**
      * Constructor
      */
-	public WicketApplication()
-	{
-	}
-	
-	/**
-	 * @see org.apache.wicket.Application#getHomePage()
-	 */
-	public Class<HomePage> getHomePage()
-	{
-		return HomePage.class;
-	}
+    public WicketApplication()
+    {
+    }
+    
+    /**
+     * @see org.apache.wicket.Application#getHomePage()
+     */
+    public Class<HomePage> getHomePage()
+    {
+        return HomePage.class;
+    }
 
 }

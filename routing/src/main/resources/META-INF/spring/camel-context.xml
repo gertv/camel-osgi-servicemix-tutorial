@@ -23,17 +23,17 @@
        xmlns:camel="http://camel.apache.org/schema/spring"
        xmlns:cxf="http://camel.apache.org/schema/cxf"
        xsi:schemaLocation="
-	       http://www.springframework.org/schema/beans
-		     http://www.springframework.org/schema/beans/spring-beans.xsd
-		     http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/context
          http://www.springframework.org/schema/context/spring-context.xsd
-		     http://www.springframework.org/schema/osgi
-		     http://www.springframework.org/schema/osgi/spring-osgi.xsd
+             http://www.springframework.org/schema/osgi
+             http://www.springframework.org/schema/osgi/spring-osgi.xsd
          http://camel.apache.org/schema/spring
-		     http://camel.apache.org/schema/spring/camel-spring.xsd
-		     http://camel.apache.org/schema/cxf
-		     http://camel.apache.org/schema/cxf/camel-cxf.xsd
-		     http://www.springframework.org/schema/osgi-compendium
+             http://camel.apache.org/schema/spring/camel-spring.xsd
+             http://camel.apache.org/schema/cxf
+             http://camel.apache.org/schema/cxf/camel-cxf.xsd
+             http://www.springframework.org/schema/osgi-compendium
          http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd">
 
     <!-- CXFbeans required to setup Web Service -->
