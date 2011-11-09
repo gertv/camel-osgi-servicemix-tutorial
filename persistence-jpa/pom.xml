@@ -107,6 +107,7 @@
                 org.springframework*;version="[2.5,4.0)",
                 javax.persistence*;version="[1.1.0,2.1.0)",
                 javax.persistence.criteria;version="[1.1.0,2.1.0)",
+                javax.sql,
                 *
                         </Import-Package>
                         <Private-Package>org.fusesource.devoxx.reportincident.dao.impl</Private-Package>
