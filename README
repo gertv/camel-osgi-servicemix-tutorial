@@ -60,7 +60,7 @@ DEPLOYING
 
     http://localhost:8282/cxf/camel-example/incident?wsdl
 
-    STEP 8 : Verify of the web site is operational
+    STEP 8 : Verify that the web site is operational
 
     http://localhost:8181/reportincidentweb/
 
