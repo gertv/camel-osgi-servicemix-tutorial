@@ -16,48 +16,7 @@
  */
 package org.fusesource.devoxx.reportincident.service;
 
-import java.util.List;
+public interface IncidentService {
 
-import org.fusesource.devoxx.reportincident.model.Incident;
-
-public interface IncidentService
-{
-
-    /**
-     * Gets incident.
-     * 
-     * @param id the id
-     * @return the incident
-     */
-    public Incident getIncident( long id );
-
-    /**
-     * Find all Incidents.
-     * 
-     * @return the list<prg.apache.camel.example.reportincident.model.Incident>
-     */
-    public List<Incident> findIncident();
-
-    /**
-     * Find prg.apache.camel.example.reportincident.model.Incident by key ref.
-     * 
-     * @param key the key
-     * @return the list< order>
-     */
-    public List<Incident> findIncident( String key );
-
-    /**
-     * Save prg.apache.camel.example.reportincident.model.Incident.
-     * 
-     * @param incident the prg.apache.camel.example.reportincident.model.Incident
-     */
-    public void saveIncident( Incident incident );
-
-    /**
-     * Removes the prg.apache.camel.example.reportincident.model.Incident.
-     * 
-     * @param id the id
-     */
-    public void removeIncident( long id );
 
 }
