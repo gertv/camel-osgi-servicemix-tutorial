@@ -1,0 +1,11 @@
+<bean id="incidentSaver"
+      class="org.fusesource.devoxx.reportincident.internal.IncidentSaver">
+  <property name="incidentService">
+    <osgi:reference
+        interface="org.fusesource.devoxx.reportincident.service.IncidentService"/>
+  </property>
+</bean>
+
+<bean id="webservice" class="org.fusesource.devoxx.reportincident.internal.WebService"/>
+
+<bean id="feedback" class="org.fusesource.devoxx.reportincident.internal.Feedback"/>

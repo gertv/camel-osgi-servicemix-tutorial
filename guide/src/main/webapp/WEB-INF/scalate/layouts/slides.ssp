@@ -1,0 +1,31 @@
+<%@ var body: String %>
+<% escapeMarkup = false %>
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="${uri("/theme/slides.css")}" rel="stylesheet" type="text/css" />
+  <link href="${uri("/theme/pygmentize.css")}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <header>
+    <div id="title">Hands on <br/> with Apache ActiveMQ, <br/> ServiceMix, Camel and CXF</div>
+    <div id="by">Charles Mouillard and <br/> Gert Vanthienen</div>
+    <div id="devoxx" />
+  </header>
+  <header>
+    <h1>FuseSource</h1>
+    <p>FuseSource, a wholly owned subsidiary of Progress Software, is a community of open source experts that provide software, support, training, and consulting for the most popular Apache-licensed open source integration projects including Apache ServiceMix, ActiveMQ, Camel and CXF.  The FuseSource team includes key committers and the leaders at Apache who know the code the best to help FuseSource customers build reliable and scalable software integration infrastructure.</p>
+    <h1>Contact FuseSource</h1>
+    <p>FuseSource, <br/>14 Oak Park, <br/>Bedford, MA 01730 USA</p>
+    <p>On the Web: fusesource.com<br/>   Email: info@fusesource.com</p>
+    <p>Toll Free: 888.280.5380 <br/> Tel: 781.382.4002 <br/> Outside US: +31 10 235 11 22</p>
+  </header>
+  <article>
+    <%= body %>
+  </article>
+  <footer>
+    <h1>Thanks for attending!</h1>
+    <div id="devoxx" />
+  </footer>
+</body>
+</html>

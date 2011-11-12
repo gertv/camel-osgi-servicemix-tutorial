@@ -1,0 +1,6 @@
+<camelContext trace="true" xmlns="http://camel.apache.org/schema/spring">
+ <dataFormats>
+   <bindy type="Csv" id="bindyDataFormat"
+          packages="org.fusesource.devoxx.reportincident.model"/>
+  </dataFormats>
+</camelContext>

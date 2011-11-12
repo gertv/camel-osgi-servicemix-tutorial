@@ -1,0 +1,6 @@
+<bean id="entityManagerFactory"
+      class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+  <property name="persistenceUnitName" value="reportIncident"/>
+  <property name="jpaVendorAdapter" ref="jpaAdapterH2"/>
+  <property name="dataSource" ref="dataSourceH2"/>
+</bean>

@@ -1,0 +1,8 @@
+<route id="fileToQueueIn">
+  <from uri="file://data/reportincident/?move=done/${date:now:yyyyMMdd}/${file:name}.bak"/>
+  <setHeader headerName="origin">
+    <constant>file</constant>
+  </setHeader>
+  <unmarshal ref="bindyDataFormat"/>
+  <to uri="activemq:queue:in"/>
+</route>

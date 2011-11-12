@@ -1,0 +1,5 @@
+<route id="queueIntoIncidentSaver">
+  <from uri="activemq:queue:in"/>
+  <transacted ref="PROPAGATION_REQUIRED"/>
+  <to uri="bean:incidentSaver?method=process"/>
+</route>

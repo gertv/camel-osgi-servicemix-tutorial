@@ -1,0 +1,2 @@
+<camelContext trace="true" xmlns="http://camel.apache.org/schema/spring">
+</camelContext>

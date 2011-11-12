@@ -1,0 +1,7 @@
+<!--  Expose Transaction Manager -->
+<osgi:service ref="txManager"
+              interface="org.springframework.transaction.PlatformTransactionManager">
+  <osgi:service-properties>
+    <entry key="tx" value="JPA"/>
+  </osgi:service-properties>
+</osgi:service>

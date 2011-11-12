@@ -1,0 +1,7 @@
+<bean id="dataSourceH2" destroy-method="close"
+      class="org.apache.commons.dbcp.BasicDataSource" >
+  <property name="driverClassName" value="org.h2.Driver"/>
+  <property name="url" value="jdbc:h2:tcp://localhost/~/reportdb"/>
+  <property name="username" value="sa"/>
+  <property name="password" value=""/>
+</bean>

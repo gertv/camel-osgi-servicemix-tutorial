@@ -1,0 +1,7 @@
+<import resource="classpath:META-INF/cxf/cxf.xml"/>
+<!-- webservice endpoint -->
+<cxf:cxfEndpoint id="reportIncident"
+    address="http://localhost:8282/cxf/camel-example/incident"
+    serviceClass="org.fusesource.devoxx.reportincident.ReportIncidentEndpoint"
+    xmlns:s="http://reportincident.devoxx.fusesource.org">
+</cxf:cxfEndpoint>

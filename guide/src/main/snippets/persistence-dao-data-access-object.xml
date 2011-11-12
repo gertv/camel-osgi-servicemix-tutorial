@@ -1,0 +1,7 @@
+<!-- DAO Declarations -->
+<bean id="incidentDAO"
+      class="org.fusesource.devoxx.reportincident.dao.impl.IncidentDAOImpl"/>
+
+<!-- Expose DAO interface as OSGI Service -->
+<osgi:service ref="incidentDAO"
+              interface="org.fusesource.devoxx.reportincident.dao.IncidentDAO"/>

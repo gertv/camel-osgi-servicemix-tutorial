@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                      
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>org.apache.camel.example</groupId>
+    <artifactId>reportincident.parent</artifactId>
+    <version>1.0-SNAPSHOT</version>    
+  </parent>
+
+  <artifactId>guide</artifactId>
+  
+  <name>Reportincident :: Hands-on Lab Guide</name>
+  
+  <properties>
+    <scala.version>2.9.1</scala.version>
+    <scalate.version>1.5.2</scalate.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-compiler</artifactId>
+      <version>${scala.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${scala.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.fusesource.scalate</groupId>
+      <artifactId>scalate-core</artifactId>
+      <version>${scalate.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.fusesource.scalate</groupId>
+      <artifactId>scalate-wikitext</artifactId>
+      <version>${scalate.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.fusesource.scalamd</groupId>
+      <artifactId>scalamd</artifactId>
+      <version>1.5</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- START SNIPPET: sitegen -->
+      <plugin>
+        <groupId>org.fusesource.scalate</groupId>
+        <artifactId>maven-scalate-plugin</artifactId>
+        <version>${scalate.version}</version>
+        <executions>
+          <execution>
+            <id>sitegen</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>sitegen-no-fork</goal>
+            </goals>
+            <configuration>
+              <webappDirectory>
+                src/main/webapp
+              </webappDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- END SNIPPET: sitegen -->
+      <plugin>
+        <groupId>org.scala-tools</groupId>
+        <artifactId>maven-scala-plugin</artifactId>
+        <version>2.15.2</version>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <goals>
+              <goal>compile</goal>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>generate-pdfs</id>
+            <phase>package</phase>
+            <goals>
+              <goal>script</goal>
+            </goals>
+            <configuration>
+              <includeScopes>plugin</includeScopes>
+              <scriptFile>src/main/scripts/GeneratePdfDocuments.scala</scriptFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>7.5.4.v20111024</version>
+        <configuration>
+          <systemProperties>
+            <systemProperty>
+              <name>scalate.mode</name>
+              <value>debug</value>
+            </systemProperty>
+          </systemProperties>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

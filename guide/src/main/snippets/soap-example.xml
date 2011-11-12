@@ -1,0 +1,16 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:rep="http://reportincident.devoxx.fusesource.org">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <rep:inputReportIncident>
+       <incidentId>999</incidentId>
+       <incidentDate>10-05-2011</incidentDate>
+       <givenName>Charles</givenName>
+       <familyName>Moulliard</familyName>
+       <summary>Issue at the DevoXX</summary>
+       <details>Room is burning !</details>
+       <email>cmoulliard@fusesource.com</email>
+       <phone>+32473604014</phone>
+    </rep:inputReportIncident>
+  </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,3 @@
+<!-- Expose Service as OSGI -->
+<osgi:service ref="incidentService"
+              interface="org.fusesource.devoxx.reportincident.service.IncidentService"/>

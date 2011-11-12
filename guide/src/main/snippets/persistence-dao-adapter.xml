@@ -1,0 +1,5 @@
+<bean id="jpaAdapterH2" class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
+  <property name="databasePlatform" value="org.apache.openjpa.jdbc.sql.H2Dictionary"/>
+  <property name="database" value="H2"/>
+  <property name="showSql" value="true"/>
+</bean>

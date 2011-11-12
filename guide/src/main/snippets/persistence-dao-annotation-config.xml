@@ -1,0 +1,2 @@
+<context:annotation-config/>
+<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>

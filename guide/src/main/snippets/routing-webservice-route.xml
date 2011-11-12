@@ -1,0 +1,32 @@
+<route id="webServiceToQueueIn">
+  <from uri="cxf:bean:reportIncident"/>
+  <setHeader headerName="origin">
+    <constant>webservice</constant>
+  </setHeader>
+  <convertBodyTo type="org.fusesource.devoxx.reportincident.InputReportIncident"/>
+  <to uri="bean:webservice"/>
+  <inOnly uri="activemq:queue:in"/>
+  <transform>
+    <method bean="feedback" method="setOk"/>
+  </transform>
+</route>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
