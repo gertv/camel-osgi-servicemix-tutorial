@@ -1,2 +1,3 @@
 <camelContext trace="true" xmlns="http://camel.apache.org/schema/spring">
+  <!-- add <route/>s, <dataFormat/>s, ... here -->
 </camelContext>
